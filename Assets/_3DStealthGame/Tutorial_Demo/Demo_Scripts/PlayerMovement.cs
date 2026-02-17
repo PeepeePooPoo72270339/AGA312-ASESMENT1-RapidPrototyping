@@ -8,6 +8,7 @@ namespace StealthGame
     public class PlayerMovement : MonoBehaviour
     {
         public InputAction MoveAction;
+        public InputAction Interact;
 
         public float walkSpeed = 1.0f;
         public float turnSpeed = 20f;
