@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,8 +30,13 @@ namespace StealthGame
             m_AudioSource = GetComponent<AudioSource> ();
         
             MoveAction.Enable();
+            Interact.Enable();
         }
 
+        public void KillMonster()
+        {
+             print("Key");
+        }
         void FixedUpdate ()
         {
             var pos = MoveAction.ReadValue<Vector2>();
@@ -63,6 +69,11 @@ namespace StealthGame
         
             m_Rigidbody.MoveRotation (m_Rotation);
             m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * walkSpeed * Time.deltaTime);
+            Interact.performed += ctx =>
+            {
+                KillMonster();
+            
+            };
         }
 
         public void AddKey(string keyName)
@@ -77,16 +88,12 @@ namespace StealthGame
 
         public void IncreaseSpeed()
         {
-            walkSpeed += 5f;
+            walkSpeed += 1f;
         
         
         }
 
-        public void KillMonster()
-        { 
-        
-        
-        }
+
 
 
     }
