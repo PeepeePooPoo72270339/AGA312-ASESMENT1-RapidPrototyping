@@ -112,6 +112,12 @@ namespace StealthGame
         }
         void Update()
         {
+            if (MonsterInRange)
+            {
+
+
+
+            }
             if (Interact.triggered && MonsterInRange)
             {
                 KillMonster();
