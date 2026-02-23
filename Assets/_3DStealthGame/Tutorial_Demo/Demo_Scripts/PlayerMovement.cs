@@ -13,6 +13,7 @@ namespace StealthGame
 
         public float walkSpeed = 1.0f;
         public float turnSpeed = 20f;
+        public bool MonsterInRange = false;
 
         Animator m_Animator;
         Rigidbody m_Rigidbody;
@@ -69,11 +70,7 @@ namespace StealthGame
         
             m_Rigidbody.MoveRotation (m_Rotation);
             m_Rigidbody.MovePosition (m_Rigidbody.position + m_Movement * walkSpeed * Time.deltaTime);
-            Interact.performed += ctx =>
-            {
-                KillMonster();
-            
-            };
+
         }
 
         public void AddKey(string keyName)
@@ -93,6 +90,35 @@ namespace StealthGame
         
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            MonsterKillScript monster = other.gameObject.GetComponent<MonsterKillScript>();
+            if (monster == null)
+                return;
+            MonsterInRange = true;
+
+
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+
+            MonsterKillScript monster = other.gameObject.GetComponent<MonsterKillScript>();
+            if (monster == null)
+                return;
+            MonsterInRange = false;
+
+
+        }
+        void Update()
+        {
+            if (Interact.triggered && MonsterInRange)
+            {
+                KillMonster();
+            
+            
+            }
+        }
 
 
 
