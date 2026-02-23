@@ -74,5 +74,20 @@ namespace StealthGame
         {
             return m_OwnedKeys.Contains(keyName);
         }
+
+        public void IncreaseSpeed()
+        {
+            walkSpeed += 5f;
+        
+        
+        }
+
+        public void KillMonster()
+        { 
+        
+        
+        }
+
+
     }
 }
