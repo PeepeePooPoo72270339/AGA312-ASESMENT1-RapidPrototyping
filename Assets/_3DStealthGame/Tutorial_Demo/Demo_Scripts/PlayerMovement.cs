@@ -10,6 +10,7 @@ namespace StealthGame
     {
         public InputAction MoveAction;
         public InputAction Interact;
+        public GameObject CurrentCollision;
 
         public float walkSpeed = 1.0f;
         public float turnSpeed = 20f;
@@ -36,7 +37,11 @@ namespace StealthGame
 
         public void KillMonster()
         {
-             print("Key");
+            print("Key");
+            Destroy(CurrentCollision.GetComponent<MonsterKillScript>().Ghost);
+            //CurrentCollision.GetComponent<MonsterKillScript>().Ghost
+
+
         }
         void FixedUpdate ()
         {
@@ -96,6 +101,7 @@ namespace StealthGame
             if (monster == null)
                 return;
             MonsterInRange = true;
+            CurrentCollision = other.gameObject;
 
 
         }
@@ -107,6 +113,7 @@ namespace StealthGame
             if (monster == null)
                 return;
             MonsterInRange = false;
+            CurrentCollision = null;
 
 
         }

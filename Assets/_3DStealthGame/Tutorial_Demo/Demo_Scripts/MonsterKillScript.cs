@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MonsterKillScript : MonoBehaviour
 {
+    public GameObject Ghost;
     public bool PlayerKillRange = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
