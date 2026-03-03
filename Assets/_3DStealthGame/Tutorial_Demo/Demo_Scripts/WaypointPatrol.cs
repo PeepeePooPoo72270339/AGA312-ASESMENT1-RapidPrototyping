@@ -7,19 +7,30 @@ namespace StealthGame
 {
     public class WaypointPatrol : MonoBehaviour
     {
+        public bool CanHearPlayer;
+        public GameObject Detection;
         public float moveSpeed = 1.0f;
         public Transform[] waypoints;
+        public Transform Player;
 
         private Rigidbody m_RigidBody;
         int m_CurrentWaypointIndex;
 
         void Start ()
         {
+            Player = GameObject.FindGameObjectWithTag("Player").transform;
             m_RigidBody = GetComponent<Rigidbody>();
         }
 
         void FixedUpdate ()
         {
+            if (CanHearPlayer)
+            {
+                FacePlayer();
+                return;
+            
+            }
+
             Transform currentWaypoint = waypoints[m_CurrentWaypointIndex];
             Vector3 currentToTarget = currentWaypoint.position - m_RigidBody.position;
 
@@ -39,5 +50,14 @@ namespace StealthGame
             //currentToTarget is normalized before multiplying by speed because we only want the direction and not the length
             m_RigidBody.MovePosition(m_RigidBody.position + currentToTarget.normalized * moveSpeed * Time.deltaTime);
         }
+
+        void FacePlayer() 
+        {
+            Vector3 currentToTarget = Player.position - m_RigidBody.position;
+            Quaternion forwardRotation = Quaternion.LookRotation(currentToTarget);
+            m_RigidBody.MoveRotation(forwardRotation);
+        }
+
+
     }
 }
