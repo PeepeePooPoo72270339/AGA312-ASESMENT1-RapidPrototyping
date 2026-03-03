@@ -10,6 +10,7 @@ namespace StealthGame
     {
         public InputAction MoveAction;
         public InputAction Interact;
+        public InputAction Crouch;
         public GameObject CurrentCollision;
 
         public float walkSpeed = 1.0f;
@@ -33,6 +34,7 @@ namespace StealthGame
         
             MoveAction.Enable();
             Interact.Enable();
+            Crouch.Enable();
         }
 
         public void KillMonster()
@@ -119,17 +121,23 @@ namespace StealthGame
         }
         void Update()
         {
+            if (Crouch.IsPressed())
+            {
+                walkSpeed = 1f;
+
+            }
+            else
+            {
+                walkSpeed = 3f;
+            
+            }
             if (MonsterInRange)
             {
-
-
 
             }
             if (Interact.triggered && MonsterInRange)
             {
                 KillMonster();
-            
-            
             }
         }
 

@@ -16,7 +16,6 @@ namespace StealthGame
                 return;
         
             player.AddKey(KeyName);
-            player.IncreaseSpeed();
             Destroy(gameObject);
         }
     }
