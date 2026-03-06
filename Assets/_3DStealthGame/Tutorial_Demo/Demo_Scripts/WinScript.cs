@@ -15,6 +15,12 @@ public class WinScript : MonoBehaviour
     {
 
     }
+    public void RemoveMonster(GameObject monster)
+    {
+        Monsters.Remove(monster);
+    
+    
+    }
 
     // Update is called once per frame
     void Update()
@@ -30,12 +36,6 @@ public class WinScript : MonoBehaviour
             GhostsRemaining = 0;
             GameEnding.KillAllMonsters();
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (Monsters.Count >= 0) 
-            {
-                Monsters.RemoveAt(0);
-            }
-        }
+
     }
 }

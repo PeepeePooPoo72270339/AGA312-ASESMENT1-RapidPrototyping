@@ -12,6 +12,7 @@ namespace StealthGame
         public InputAction Interact;
         public InputAction Crouch;
         public GameObject CurrentCollision;
+        public MonoBehaviour WinScript;
 
         public float walkSpeed = 1.0f;
         public float turnSpeed = 20f;
@@ -41,6 +42,8 @@ namespace StealthGame
         public void KillMonster()
         {
             print("Key");
+            GameObject ghost = CurrentCollision.GetComponent<MonsterKillScript>().Ghost;
+            WinScript.GetComponent<WinScript>().RemoveMonster(ghost);
             Destroy(CurrentCollision.GetComponent<MonsterKillScript>().Ghost);
             //CurrentCollision.GetComponent<MonsterKillScript>().Ghost
 
