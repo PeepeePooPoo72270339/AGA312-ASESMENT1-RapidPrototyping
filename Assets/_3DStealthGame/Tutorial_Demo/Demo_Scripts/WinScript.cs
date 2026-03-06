@@ -2,13 +2,15 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
 using System;
+using StealthGame;
 
 public class WinScript : MonoBehaviour
 {
     public List<GameObject> Monsters = new List<GameObject>();
     public int GhostsRemaining;
     private VisualElement m_EndScreen;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameEnding GameEnding;
+
     void Start()
     {
 
@@ -26,22 +28,14 @@ public class WinScript : MonoBehaviour
         {
             print("YouWon");
             GhostsRemaining = 0;
+            GameEnding.KillAllMonsters();
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            if (Monsters.Count >= 0) 
+            {
                 Monsters.RemoveAt(0);
-                Monsters.RemoveAt(1);
-                Monsters.RemoveAt(2);
-                Monsters.RemoveAt(3);
-
-
-
+            }
         }
-        
-        
     }
-    
-
-
-
 }

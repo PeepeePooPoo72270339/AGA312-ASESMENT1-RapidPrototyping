@@ -66,6 +66,12 @@ namespace StealthGame
             {
                 EndLevel (m_CaughtScreen, true, caughtAudio);
             }
+
+        }
+        public void KillAllMonsters()
+        {
+            EndLevel(m_EndScreen, true, exitAudio);
+
         }
 
         void EndLevel (VisualElement element, bool doRestart, AudioSource audioSource)
