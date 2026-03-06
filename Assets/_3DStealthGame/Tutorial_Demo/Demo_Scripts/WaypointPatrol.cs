@@ -24,7 +24,7 @@ namespace StealthGame
 
         void FixedUpdate ()
         {
-            if (CanHearPlayer)
+            if (CanHearPlayer && Player.GetComponent<PlayerMovement>().IsCrouching == false)
             {
                 FacePlayer();
                 return;

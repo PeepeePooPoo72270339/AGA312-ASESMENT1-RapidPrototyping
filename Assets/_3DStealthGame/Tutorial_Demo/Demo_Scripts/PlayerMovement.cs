@@ -16,6 +16,7 @@ namespace StealthGame
         public float walkSpeed = 1.0f;
         public float turnSpeed = 20f;
         public bool MonsterInRange = false;
+        public bool IsCrouching = false;
 
         Animator m_Animator;
         Rigidbody m_Rigidbody;
@@ -124,11 +125,13 @@ namespace StealthGame
             if (Crouch.IsPressed())
             {
                 walkSpeed = 1f;
+                IsCrouching = true; 
 
             }
             else
             {
                 walkSpeed = 3f;
+                IsCrouching = false;
             
             }
             if (MonsterInRange)
