@@ -15,6 +15,7 @@ public class GhostCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GhostRemaining.text = "test";
+        GhostRemaining.text = GameManager.GetComponent<WinScript>().GhostsRemaining.ToString();
+
     }
 }
